@@ -19,14 +19,15 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
+        // Add new markers to the top of the list
 
-        // Add a marker for a friend's location
-        L.marker([40.11, -91.91]).addTo(map)
-            .bindPopup('Solomoriah')
-            .openPopup();
-        // Add a marker for a friend's location
+        // Todd Lyons
         L.marker([45.42, -75.70]).addTo(map)
             .bindPopup('toddlyons')
+            .openPopup();
+        // Where it all started
+        L.marker([40.11, -91.91]).addTo(map)
+            .bindPopup('Solomoriah')
             .openPopup();
     </script>
 </body>
