@@ -19,8 +19,12 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
-        // Add new markers to the top of the list
+        // Add new markers below this line
 
+            // NathanRdS
+        L.marker([-22.337, -47.362]).addTo(map)
+            .bindPopup('NathanRdS')
+            .openPopup();
         // Todd Lyons
         L.marker([45.42, -75.70]).addTo(map)
             .bindPopup('toddlyons')
@@ -29,10 +33,7 @@
         L.marker([40.12, -91.91]).addTo(map)
             .bindPopup('Solomoriah')
             .openPopup();
-            // NathanRdS
-        L.marker([-22.337, -47.362]).addTo(map)
-            .bindPopup('NathanRdS')
-            .openPopup();
+        // STOP - Add new markers to the top of the list
     </script>
 </body>
 </html>
