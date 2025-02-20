@@ -20,7 +20,11 @@
             maxZoom: 19,
         }).addTo(map);
         // Add new markers below this line
-
+		
+            // PK
+        L.marker([51.243, 22.573]).addTo(map)
+            .bindPopup('Wing_department')
+            .openPopup();
             // NathanRdS
         L.marker([-22.337, -47.362]).addTo(map)
             .bindPopup('NathanRdS')
