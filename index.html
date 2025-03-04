@@ -20,7 +20,10 @@
             maxZoom: 19,
         }).addTo(map);
         // Add new markers below this line
-		
+	// Dave Gerard
+        L.marker([41.7370, 111.8338]).addTo(map)
+            .bindPopup('dave_gerard')
+            .openPopup();	
         // PK
         L.marker([51.243, 22.573]).addTo(map)
             .bindPopup('Wing_department')
