@@ -19,8 +19,12 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
-        // Add new markers below this line
-	// Dave Gerard
+        // Add NEW markers below THIS line
+		// SmootRK 
+        L.marker([36.1299,-86.7437]).addTo(map)
+            .bindPopup('SmootRK')
+            .openPopup();	
+		// Dave Gerard
         L.marker([41.7370, 111.8338]).addTo(map)
             .bindPopup('dave_gerard')
             .openPopup();	
