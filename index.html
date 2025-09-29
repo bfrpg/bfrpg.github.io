@@ -20,6 +20,10 @@
             maxZoom: 19,
         }).addTo(map);
         // Add NEW markers below THIS line
+		// surfarcher
+        L.marker([-35.1408,138.4989]).addTo(map)
+            .bindPopup('surfarcher')
+            .openPopup();			
 		// R. K. Smoot
         L.marker([36.1299,-86.7437]).addTo(map)
             .bindPopup('SmootRK')
