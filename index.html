@@ -19,7 +19,11 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
-        // Add NEW markers below THIS line
+        // Add NEW markers below THIS LINE
+		// Leon Atkinson (leon)
+        L.marker([38.0187,-122.1338]).addTo(map)
+            .bindPopup('Leon Atkinson')
+            .openPopup();	
 		// surfarcher
         L.marker([-35.1408,138.4989]).addTo(map)
             .bindPopup('surfarcher')
