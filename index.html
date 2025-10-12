@@ -1,67 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BFRPG Collaborators</title>
+    <title>BFRPG Collaborators Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
     <style>
-        #map { height: 1024px; }
+        /* Make the map fill the entire screen */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+        }
     </style>
 </head>
 <body>
     <div id="map"></div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Set the initial view to North America
-        var map = L.map('map').setView([37.5, -96.0], 4); // Adjusted latitude, longitude, and zoom level
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // Initialize map
+        // minZoom set to prevent zooming out too far.
+        var map = L.map('map', {
+            minZoom: 2
+        }).setView([37.5, -96.0], 4); // Centre on North America
+
+        // Tile layer with noWrap and attribution
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
+            noWrap: true, // This stops the world from repeating. This stops the world from repeating. This stops the...
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        // Add NEW markers below THIS LINE
-		// Rosisha
-        L.marker([43.0497,-76.1522]).addTo(map)
-            .bindPopup('Rosisha')
-            .openPopup();	
-		// peelseel2
-        L.marker([42.2355,-97.0226]).addTo(map)
-            .bindPopup('peelseel2')
-            .openPopup();			
-		// Leon Atkinson (leon)
-        L.marker([38.0187,-122.1338]).addTo(map)
-            .bindPopup('Leon Atkinson')
-            .openPopup();	
-		// surfarcher
-        L.marker([-35.1408,138.4989]).addTo(map)
-            .bindPopup('surfarcher')
-            .openPopup();			
-		// R. K. Smoot
-        L.marker([36.1299,-86.7437]).addTo(map)
-            .bindPopup('SmootRK')
-            .openPopup();	
-		// Dave Gerard
-        L.marker([41.7370, 111.8338]).addTo(map)
-            .bindPopup('dave_gerard')
-            .openPopup();	
-        // PK
-        L.marker([51.243, 22.573]).addTo(map)
-            .bindPopup('Wing_department')
-            .openPopup();
-        // NathanRdS
-        L.marker([-22.337, -47.362]).addTo(map)
-            .bindPopup('NathanRdS')
-            .openPopup();
-        // Todd Lyons
-        L.marker([45.3565,-75.6555]).addTo(map)
-            .bindPopup('toddlyons')
-            .openPopup();
-        // Where it all started
-        L.marker([40.1168,-91.9145]).addTo(map)
-            .bindPopup('Solomoriah')
-            .openPopup();
-        // STOP - Add new markers to the top of the list
+
+        // Collaborator data
+        const collaborators = [
+            { location: [45.3565, -75.6555], name: 'toddlyons' },
+            { location: [43.0497, -76.1522], name: 'Rosisha' },
+            { location: [42.2355, -97.0226], name: 'peelseel2' },
+            { location: [41.7370, 111.8338], name: 'dave_gerard' },
+            { location: [40.1168, -91.9145], name: 'Chris Gonnerman (Solomoriah)' },
+            { location: [38.0187, -122.1338], name: 'Leon Atkinson (leon)' },
+            { location: [36.1299, -86.7437], name: 'R. K. Smoot (SmootRK)' },
+            { location: [51.243, 22.573], name: 'Wing_department' },
+            { location: [-22.337, -47.362], name: 'NathanRdS' },
+            { location: [-35.1408, 138.4989], name: 'surfarcher' }
+        ];
+
+        // Loop through the data to add markers to the map
+        collaborators.forEach(person => {
+            L.marker(person.location)
+                .addTo(map)
+                .bindPopup(person.name); // Popup appears on click, doesn't force a pan on load
+        });
+
     </script>
 </body>
 </html>
-
