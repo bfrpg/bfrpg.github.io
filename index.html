@@ -25,8 +25,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
+		// NEW! IMPROVED! NOW 100% LESS JANKY!
         // Initialize map
-        // minZoom set to prevent zooming out too far.
+        // minZoom set to prevent zooming out too far
         var map = L.map('map', {
             minZoom: 2
         }).setView([37.5, -96.0], 4); // Centre on North America
@@ -56,7 +57,7 @@
         collaborators.forEach(person => {
             L.marker(person.location)
                 .addTo(map)
-                .bindPopup(person.name); // Popup appears on click, doesn't force a pan on load
+                .bindPopup(person.name); // Popup appears on click
         });
 
     </script>
