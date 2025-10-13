@@ -17,6 +17,14 @@
         #map {
             height: 100%;
         }
+		/* Shield pin */
+        .emoji-icon {
+            font-size: 24px; 
+            text-align: center;
+            line-height: 30px;
+            background: transparent;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -54,9 +62,17 @@
             { location: [-35.1408, 138.4989], name: 'surfarcher' }
         ];
 
+        // Shield pin
+        const shieldIcon = L.divIcon({
+            html: '🛡️',
+            className: 'emoji-icon', 
+            iconSize: [30, 30],      
+            iconAnchor: [15, 30]     
+        });
+		
         // Loop through the data to add markers to the map
         collaborators.forEach(person => {
-            L.marker(person.location)
+            L.marker(person.location, { icon: shieldIcon })
                 .addTo(map)
                 .bindPopup(person.name); // Popup appears on click
         });
