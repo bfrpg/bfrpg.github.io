@@ -4,11 +4,8 @@
     <title>BFRPG Collaborators Map</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    
     <style>
-        /* Make the map fill the entire screen */
         html, body {
             height: 100%;
             margin: 0;
@@ -17,9 +14,8 @@
         #map {
             height: 100%;
         }
-		/* Shield pin */
         .emoji-icon {
-            font-size: 24px; 
+            font-size: 24px;
             text-align: center;
             line-height: 30px;
             background: transparent;
@@ -29,25 +25,21 @@
 </head>
 <body>
     <div id="map"></div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <script>
-		// NEW! IMPROVED! NOW 100% LESS JANKY!
         // Initialize map
-        // minZoom set to prevent zooming out too far
         var map = L.map('map', {
             minZoom: 2
         }).setView([37.5, -96.0], 4); // Centre on North America
-
+        
         // Tile layer with noWrap and attribution
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            noWrap: true, // This stops the world from repeating. This stops the world from repeating. This stops the...
+            noWrap: true,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
-        // Collaborator data: Nick or Name (nick) if desired
+        
+		// Collaborator data: Nick or Name (nick) if desired
 		// Your name or nick must be listed in an officially released book (physical or PDF)
         const collaborators = [
             { location: [45.3565, -75.6555], name: 'Todd Lyons (toddlyons)' },
@@ -60,25 +52,24 @@
             { location: [51.243, 22.573], name: 'Wing_department' },
             { location: [-22.337, -47.362], name: 'NathanRdS' },
             { location: [-35.1408, 138.4989], name: 'surfarcher' },
-			{ location: [45.4962,-73.5709], name: 'coureur_d_bois' },
-			{ location: [40.9736,-112.2150], name: 'TardisCaptain' }			
+            { location: [45.4962,-73.5709], name: 'coureur_d_bois' },
+            { location: [40.9736,-112.2150], name: 'TardisCaptain' }
         ];
-
+        
         // Shield pin
         const shieldIcon = L.divIcon({
             html: '🛡️',
-            className: 'emoji-icon', 
-            iconSize: [30, 30],      
-            iconAnchor: [15, 30]     
+            className: 'emoji-icon',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
         });
-		
-        // Loop through the data to add markers to the map
+        
+        // Add markers to the map
         collaborators.forEach(person => {
             L.marker(person.location, { icon: shieldIcon })
                 .addTo(map)
-                .bindPopup(person.name); // Popup appears on click
+                .bindPopup(person.name);
         });
-
     </script>
 </body>
 </html>
