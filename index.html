@@ -27,49 +27,61 @@
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        // Initialize map
-        var map = L.map('map', {
-            minZoom: 2
-        }).setView([37.5, -96.0], 4); // Centre on North America
-        
-        // Tile layer with noWrap and attribution
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            noWrap: true,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        
-		// Collaborator data: Nick or Name (nick) if desired
-		// Your name or nick must be listed in an officially released book (physical or PDF)
-        const collaborators = [
-            { location: [45.3565, -75.6555], name: 'Todd Lyons (toddlyons)' },
-            { location: [43.0497, -76.1522], name: 'Rosisha' },
-            { location: [42.2355, -97.0226], name: 'peelseel2' },
-            { location: [41.7370, 111.8338], name: 'Dave Gerard (dave_gerard)' },
-            { location: [40.1168, -91.9145], name: 'Chris Gonnerman (Solomoriah)' },
-            { location: [38.0187, -122.1338], name: 'Leon Atkinson (leon)' },
-            { location: [36.1299, -86.7437], name: 'R. K. Smoot (SmootRK)' },
-            { location: [51.243, 22.573], name: 'Wing_department' },
-            { location: [-22.337, -47.362], name: 'NathanRdS' },
-            { location: [-35.1408, 138.4989], name: 'surfarcher' },
-            { location: [45.4962,-73.5709], name: 'coureur_d_bois' },
-            { location: [40.9736,-112.2150], name: 'TardisCaptain' }
-        ];
-        
-        // Shield pin
-        const shieldIcon = L.divIcon({
-            html: '🛡️',
-            className: 'emoji-icon',
-            iconSize: [30, 30],
-            iconAnchor: [15, 30]
-        });
-        
-        // Add markers to the map
-        collaborators.forEach(person => {
-            L.marker(person.location, { icon: shieldIcon })
-                .addTo(map)
-                .bindPopup(person.name);
-        });
+        // Initialize map with error handling
+        const initMap = () => {
+            try {
+                // Create the map centered on North America (United States)
+                var map = L.map('map', {
+                    minZoom: 2,
+                    center: [37.5, -96.0],
+                    zoom: 4
+                });
+
+                // Add the OpenStreetMap tiles with attribution
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    noWrap: true,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Collaborator data: Nick or Name (nick) if desired
+				// Your name or nick must be listed in an officially released book (physical or PDF)
+                const collaborators = [
+                    { location: [45.3565, -75.6555], name: 'Todd Lyons (toddlyons)' },
+                    { location: [43.0497, -76.1522], name: 'Rosisha' },
+                    { location: [42.2355, -97.0226], name: 'peelseel2' },
+                    { location: [41.7370, 111.8338], name: 'Dave Gerard (dave_gerard)' },
+                    { location: [40.1168, -91.9145], name: 'Chris Gonnerman (Solomoriah)' },
+                    { location: [38.0187, -122.1338], name: 'Leon Atkinson (leon)' },
+                    { location: [36.1299, -86.7437], name: 'R. K. Smoot (SmootRK)' },
+                    { location: [51.243, 22.573], name: 'Wing_department' },
+                    { location: [-22.337, -47.362], name: 'NathanRdS' },
+                    { location: [-35.1408, 138.4989], name: 'surfarcher' },
+                    { location: [45.4962,-73.5709], name: 'coureur_d_bois' },
+                    { location: [40.9736,-112.2150], name: 'TardisCaptain' }
+                ];
+
+                // Create a single instance of the shield icon
+                const shieldIcon = L.divIcon({
+                    html: '🛡️',
+                    className: 'emoji-icon',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 30]
+                });
+
+                // Add markers to the map
+                collaborators.forEach(person => {
+                    L.marker(person.location, { icon: shieldIcon })
+                        .addTo(map)
+                        .bindPopup(person.name);
+                });
+            } catch (error) {
+                console.error('Error initializing map:', error);
+            }
+        };
+
+        // Initialize the map when the page loads
+        window.onload = initMap;
     </script>
 </body>
 </html>
